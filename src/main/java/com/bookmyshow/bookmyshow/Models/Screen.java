@@ -6,14 +6,24 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-@Entity
+@Entity(name = "Screens")
 public class Screen extends BaseModel{
 
     private String name;
+
     @OneToMany
     private List<Seat> seats;
+
     @ElementCollection(targetClass = Features.class)
     @Enumerated(EnumType.ORDINAL)
     private List<Features> features;
+
+    @Enumerated(EnumType.ORDINAL)
     private ScreenStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "theatre_id")
+    Theatre theatre;
+
+
 }

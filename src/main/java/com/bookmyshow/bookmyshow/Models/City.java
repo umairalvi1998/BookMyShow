@@ -10,6 +10,6 @@ import java.util.List;
 @Data
 public class City extends BaseModel{
     String name;
-    @OneToMany
+    @OneToMany(mappedBy = "city")
     List<Theatre> theatres;
 }

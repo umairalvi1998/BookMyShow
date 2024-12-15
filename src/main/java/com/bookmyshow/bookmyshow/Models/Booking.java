@@ -6,7 +6,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
+@Entity(name = "Bookings")
 @Data
 public class Booking extends BaseModel {
     @ManyToOne

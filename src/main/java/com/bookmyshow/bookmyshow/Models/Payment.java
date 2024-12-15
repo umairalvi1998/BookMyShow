@@ -6,7 +6,7 @@ import jakarta.persistence.Enumerated;
 import lombok.Data;
 
 @Data
-@Entity
+@Entity(name = "Payments")
 public class Payment  extends  BaseModel {
     private String referenceNumber;
     private int amount;
