@@ -26,4 +26,27 @@ public class Theatre extends BaseModel {
     @JoinColumn(name = "city_id")
     private City city;
 
+    public List<Screen> getScreens() {
+        return screens;
+    }
+
+    public void setScreens(List<Screen> screens) {
+        this.screens = screens;
+    }
+
+    public String getTheatreAddress() {
+        return theatreAddress;
+    }
+
+    public void setTheatreAddress(String theatreAddress) {
+        this.theatreAddress = theatreAddress;
+    }
+
+    public String getTheatreName() {
+        return theatreName;
+    }
+
+    public void setTheatreName(String theatreName) {
+        this.theatreName = theatreName;
+    }
 }

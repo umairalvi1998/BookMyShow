@@ -23,4 +23,44 @@ public class Show extends BaseModel{
         private Screen screen;
         @ElementCollection(targetClass = Features.class)
         private List<Features> features;
+
+        public List<Features> getFeatures() {
+                return features;
+        }
+
+        public void setFeatures(List<Features> features) {
+                this.features = features;
+        }
+
+        public Screen getScreen() {
+                return screen;
+        }
+
+        public void setScreen(Screen screen) {
+                this.screen = screen;
+        }
+
+        public LocalDateTime getEndTime() {
+                return endTime;
+        }
+
+        public void setEndTime(LocalDateTime endTime) {
+                this.endTime = endTime;
+        }
+
+        public LocalDateTime getStartTime() {
+                return startTime;
+        }
+
+        public void setStartTime(LocalDateTime startTime) {
+                this.startTime = startTime;
+        }
+
+        public Movie getMovie() {
+                return movie;
+        }
+
+        public void setMovie(Movie movie) {
+                this.movie = movie;
+        }
 }

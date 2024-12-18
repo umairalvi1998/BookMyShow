@@ -18,4 +18,36 @@ public class Payment  extends  BaseModel {
     private PaymentMode paymentMode;
     @Enumerated(EnumType.ORDINAL)
     private Payment_Status paymentStatus;
+
+    public Payment_Status getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(Payment_Status paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public PaymentMode getPaymentMode() {
+        return paymentMode;
+    }
+
+    public void setPaymentMode(PaymentMode paymentMode) {
+        this.paymentMode = paymentMode;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
+    }
 }
