@@ -6,11 +6,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity(name = "Theatres")
 @Data
+@Getter
+@Setter
 public class Theatre extends BaseModel {
     private String theatreName;
     private String theatreAddress;

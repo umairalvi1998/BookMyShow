@@ -3,6 +3,7 @@ package com.bookmyshow.bookmyshow.Services;
 import com.bookmyshow.bookmyshow.Exceptions.ShowSeatNotFoundException;
 import com.bookmyshow.bookmyshow.Exceptions.UserNotFoundException;
 import com.bookmyshow.bookmyshow.Models.*;
+import com.bookmyshow.bookmyshow.Repositories.BookingRepository;
 import com.bookmyshow.bookmyshow.Repositories.ShowSeatRepository;
 import com.bookmyshow.bookmyshow.Repositories.UserRepository;
 import org.springframework.stereotype.Service;
@@ -15,14 +16,16 @@ import java.util.Optional;
 @Service
 public class BookingService {
 
+    private BookingRepository bookingRepository;
     private UserRepository userRepo;
     private ShowSeatRepository showSeatRepo;
     private PriceCalculatorService priceCalculatorService;
 
-    public BookingService(UserRepository userRepo,ShowSeatRepository showSeatRepo,PriceCalculatorService priceCalculatorService) {
+    public BookingService(UserRepository userRepo, ShowSeatRepository showSeatRepo, PriceCalculatorService priceCalculatorService, BookingRepository bookingRepository) {
         this.userRepo = userRepo;
         this.showSeatRepo = showSeatRepo;
         this.priceCalculatorService = priceCalculatorService;
+        this.bookingRepository = bookingRepository;
     }
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
@@ -33,7 +36,7 @@ public class BookingService {
               throw new UserNotFoundException("User Not Found");
           }
 
-         List<ShowSeat> showSeats =  showSeatRepo.findAllById(showSeatIds);
+         List<ShowSeat> showSeats =  showSeatRepo.findAllByIdIn(showSeatIds);
 
           for(ShowSeat showSeat : showSeats) {
 
@@ -55,8 +58,11 @@ public class BookingService {
         booking.setBookingStatus(BookingStatus.PENDING);
         booking.setAmount(priceCalculatorService.calculatePrice(showSeats));
 
+        bookingRepository.save(booking);
 
-            return booking;
+
+
+        return booking;
     }
 }
 
