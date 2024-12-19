@@ -1,5 +1,6 @@
 package com.bookmyshow.bookmyshow.Services;
 
+import com.bookmyshow.bookmyshow.Dtos.ResponseStatus;
 import com.bookmyshow.bookmyshow.Models.User;
 import com.bookmyshow.bookmyshow.Repositories.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,6 +32,23 @@ public class UserService {
         user.setPassword(bCryptPasswordEncoder.encode(password));
 
         return userRepository.save(user);
+    }
+
+    public ResponseStatus login(String email, String password) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            if (bCryptPasswordEncoder.matches(password, user.getPassword())) {
+                return ResponseStatus.SUCCESS;
+            }
+            else {
+                return ResponseStatus.FAILURE;
+            }
+        }
+        else {
+            //ASk user to sign up
+        }
+        return ResponseStatus.FAILURE;
     }
 
 }

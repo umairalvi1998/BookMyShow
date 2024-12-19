@@ -3,12 +3,10 @@ package com.bookmyshow.bookmyshow.Controllers;
 import com.bookmyshow.bookmyshow.Dtos.ResponseStatus;
 import com.bookmyshow.bookmyshow.Dtos.UserRequestDto;
 import com.bookmyshow.bookmyshow.Dtos.UserResponseDto;
+import com.bookmyshow.bookmyshow.Dtos.loginRequestDto;
 import com.bookmyshow.bookmyshow.Models.User;
 import com.bookmyshow.bookmyshow.Services.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
@@ -31,7 +29,8 @@ public class UserController {
             return responseDto;
     }
 
-    public void login() {
-
+    @GetMapping("/login")
+    public ResponseStatus login(@RequestBody loginRequestDto requestDto) {
+       return  userService.login(requestDto.getEmail(), requestDto.getPassword());
     }
 }
